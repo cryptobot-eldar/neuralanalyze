@@ -1,6 +1,6 @@
 FROM egaraev/basecentos:latest
-COPY neuralprediction.py config.py start.sh /usr/local/bin/
+COPY neuralprediction.py config.py requirements.txt start.sh /usr/local/bin/
 WORKDIR /usr/local/bin
+RUN pip install -r requirements.txt
 RUN chmod +x start.sh
-RUN touch /var/log/work.log
 ENTRYPOINT ["/usr/local/bin/start.sh"]
