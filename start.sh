@@ -15,5 +15,5 @@ fi
 
 
 
-sleep 100
+sleep 1000
 done
