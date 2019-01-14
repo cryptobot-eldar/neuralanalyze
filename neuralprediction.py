@@ -242,7 +242,7 @@ def learn():
                     #    myfile.write(str(current_price)+'      '+str(currenttime+'\n'))
 
 
-                    with open('results/output_result_' + 'BTC_' + currency + '.txt', 'r') as f:
+                    with open('data/results/output_result_' + 'BTC_' + currency + '.txt', 'r') as f:
                         lines = f.read().splitlines()
                         last_line = lines[-1]  # should be -1
                         last_word = last_line.split()[0]
@@ -259,7 +259,7 @@ def learn():
                         direction = 'DOWN'
 
 
-                    with open('results/output_result_' + 'BTC_' + currency + '.txt', 'a') as myfile:
+                    with open('data/results/output_result_' + 'BTC_' + currency + '.txt', 'a') as myfile:
                         myfile.write(
                             '1 The predicted  price is  ' + str(predicted_price) + '    Current time is:  ' + str(
                                 currenttime + '   Current price is:   ' + str(
@@ -437,13 +437,13 @@ def learn():
 
                     # save the result into txt file
                     test_result = zip(predicted_values, y_test) + shifted_value
-                    np.savetxt('results/output_result_' + 'BTC_' + currency + '.txt', test_result)
+                    np.savetxt('data/results/output_result_' + 'BTC_' + currency + '.txt', test_result)
 
                     # with open('results/output_result_'+'BTC_'+currency+'.txt', 'a') as myfile:
                     #    myfile.write(str(current_price)+'      '+str(currenttime+'\n'))
 
 
-                    with open('results/output_result_' + 'BTC_' + currency + '.txt', 'r') as f:
+                    with open('data/results/output_result_' + 'BTC_' + currency + '.txt', 'r') as f:
                         lines = f.read().splitlines()
                         last_line = lines[-1]  # should be -1
                         last_word = last_line.split()[0]
@@ -460,7 +460,7 @@ def learn():
                         direction = 'DOWN'
 
 
-                    with open('results/output_result_' + 'BTC_' + currency + '.txt', 'a') as myfile:
+                    with open('data/results/output_result_' + 'BTC_' + currency + '.txt', 'a') as myfile:
                         myfile.write(
                             'The predicted  price is  ' + str(predicted_price) + '    Current time is:  ' + str(
                                 currenttime + '   Current price is:   ' + str(
