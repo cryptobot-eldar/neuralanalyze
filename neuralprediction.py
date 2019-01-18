@@ -236,7 +236,7 @@ def learn():
 
                     # save the result into txt file
                     test_result = zip(predicted_values, y_test) + shifted_value
-                    np.savetxt('results/output_result_' + 'BTC_' + currency + '.txt', test_result)
+                    np.savetxt('data/results/output_result_' + 'BTC_' + currency + '.txt', test_result)
 
                     # with open('results/output_result_'+'BTC_'+currency+'.txt', 'a') as myfile:
                     #    myfile.write(str(current_price)+'      '+str(currenttime+'\n'))
