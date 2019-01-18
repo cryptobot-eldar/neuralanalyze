@@ -21,7 +21,7 @@ currtime = int(round(time.time()))
 starttime = str(currtime - 16000000) #for 1800 period 6 month
 #starttime = str(millis - 64000000) #for 7200 period 24 month
 period = str(1800)
-epochs = 5
+epochs = 50
 now = datetime.datetime.now()
 currenttime = now.strftime("%Y-%m-%d %H:%M")
 
