@@ -1,3 +1,4 @@
+#import matplotlib.pyplot as plt
 import numpy as np
 import time
 import datetime
@@ -277,6 +278,11 @@ def learn():
                         cursor.execute('insert into logs(date, log_entry) values("%s", "%s")' % (currenttime, printed))
                         cursor.execute('update markets set ai_price = %s, ai_time = %s, ai_direction =%s, ai_prev_price = %s, ai_time_human=%s  where market =%s',(predicted_price, currtime, direction, current_price, currenttime, market))
                         cursor.execute('insert into predictions (ai_price, ai_time, ai_direction, ai_prev_price, ai_time_human, market, log ) values ("%s", "%s", "%s", "%s", "%s", "%s", "%s")' % (predicted_price, currtime, direction, current_price, currenttime, market, printed))
+                        if status_orders(market, 4) == 1:
+                            cursor.execute('insert into orderlogs(market, signals, time) values("%s", "%s", "%s")' % (
+                            market, str(currenttime)+' AI: ' + str(direction), currtime))
+                        else:
+                            pass
                         db.commit()
                     except MySQLdb.Error, e:
                         print "Error %d: %s" % (e.args[0], e.args[1])
@@ -480,6 +486,11 @@ def learn():
                         cursor.execute(
                             'insert into predictions (ai_price, ai_time, ai_direction, ai_prev_price, ai_time_human, market, log ) values ("%s", "%s", "%s", "%s", "%s", "%s", "%s")' % (
                             predicted_price, currtime, direction, current_price, currenttime, market, printed))
+                        if status_orders(market, 4) == 1:
+                            cursor.execute('insert into orderlogs(market, signals, time) values("%s", "%s", "%s")' % (
+                            market, str(currenttime)+' AI: ' + str(direction), currtime))
+                        else:
+                            pass
                         db.commit()
                     except MySQLdb.Error, e:
                         print "Error %d: %s" % (e.args[0], e.args[1])
@@ -492,6 +503,18 @@ def learn():
                 pass
 
 
+
+def status_orders(marketname, value):
+    db = MySQLdb.connect("database-service", "cryptouser", "123456", "cryptodb")
+    cursor = db.cursor()
+    market=marketname
+    cursor.execute("SELECT * FROM orders WHERE active = 1 and market = '%s'" % market)
+    r = cursor.fetchall()
+    for row in r:
+        if row[1] == marketname:
+            return row[value]
+
+    return 0
 
 
 
