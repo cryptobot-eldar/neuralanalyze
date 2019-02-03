@@ -4,4 +4,5 @@ RUN mkdir /usr/local/bin/data
 WORKDIR /usr/local/bin
 RUN pip install -r requirements.txt
 RUN chmod +x start.sh
+RUN timedatectl set-timezone Europe/Warsaw
 ENTRYPOINT ["/usr/local/bin/start.sh"]
