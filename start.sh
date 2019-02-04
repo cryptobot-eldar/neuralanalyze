@@ -1,6 +1,8 @@
 #!/bin/bash
 #exec &>>/var/log/work.log
 
+./restart.sh &
+
 while true
 do
 SERVICE0='neuralprediction.py'
